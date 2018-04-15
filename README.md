@@ -12,11 +12,11 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 
 ## Board
 
-| P2 |    |    |    |    |    |   | P1 |
-|----|----|----|----|----|----|---|----|
-|    | 12 | 11 | 10 | 9  | 8  | 7 |    |
-| 13 |    |    |    |    |    |   |  6 |
-|    | 0  |  1 |  2 |  3 |  4 | 5 |    |
+| P2 |   |   |   |   |   |   | P1 |
+|----|---|---|---|---|---|---|----|
+|    | L | K | J | I | H | G |    |
+| K2 |   |   |   |   |   |   | K1 |
+|    | A | B | C | D | E | F |    |
 
 Player 1 Kalah's is position 6, his pits are 0-5
 
