@@ -12,42 +12,38 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
+    @RequestMapping(value = "/initial-board", method = RequestMethod.GET)
+    public Object getInitialBoard(
+            @RequestParam(value = "in-html", defaultValue = "false") boolean inHtml){
+        if(inHtml ==  true) {
+            return gameService.getInitialBoardHtml();
+        } else {
+            return gameService.getInitialBoard();
+        }
+    }
+
     @RequestMapping(value = "/{game-id}/play/{player-id}", method = RequestMethod.GET)
-    public Board playerTurn(
+    public Object playerTurn(
             @PathVariable("game-id") int gameId,
             @PathVariable("player-id") int playerId,
-            @RequestParam(value = "pit") String pit){
-        return gameService.playTurn(gameId, playerId, pit.charAt(0));
+            @RequestParam(value = "pit-id") char pitId,
+            @RequestParam(value = "in-html", defaultValue = "false") boolean inHtml){
+        if(inHtml ==  true) {
+            return gameService.playTurnHtml(gameId, playerId, pitId);
+        } else{
+            return gameService.playTurn(gameId, playerId, pitId);
+        }
     }
 
     @RequestMapping(value = "/{game-id}/board-status", method = RequestMethod.GET)
-    public Board getBoardStatus(
-            @PathVariable("game-id") int gameId){
-        return gameService.getBoardStatus(gameId);
-    }
-
-    @RequestMapping(value = "/initial-board", method = RequestMethod.GET)
-    public Board getInitialBoard(){
-        return gameService.getInitialBoard();
-    }
-
-    @RequestMapping(value = "/{game-id}/html/play/{player-id}", method = RequestMethod.GET)
-    public String playerTurnHtml(
+    public Object getBoardStatus(
             @PathVariable("game-id") int gameId,
-            @PathVariable("player-id") int playerId,
-            @RequestParam(value = "pit") String pit){
-        return gameService.playTurnHtml(gameId, playerId, pit.charAt(0));
+            @RequestParam(value = "in-html", defaultValue = "false") boolean inHtml){
+        if(inHtml ==  true) {
+            return gameService.getBoardStatusHtml(gameId);
+        } else {
+            return gameService.getBoardStatus(gameId);
+        }
     }
-    @RequestMapping(value = "/{game-id}/html/board-status", method = RequestMethod.GET)
-    public String getBoardStatusHtml(
-            @PathVariable("game-id") int gameId){
-        return gameService.getBoardStatusHtml(gameId);
-    }
-
-    @RequestMapping(value = "/html/initial-board", method = RequestMethod.GET)
-    public String getInitialBoardHtml(){
-        return gameService.getInitialBoardHtml();
-    }
-
 
 }
