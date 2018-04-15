@@ -49,8 +49,13 @@ Owner [int] If this pit belongs to Player 1 value:1, else value:2
 
 ## Rest Services
 
-- GET /game-status : Board Status
-- POST /play/id-player?pit=# : Player play, setting the initial pit where his turn starts
-- GET /logs : Players game logs 
+#### Board Status
+GET [/v1/game/{game-id}/board-status?in-html=true] 
+
+#### Players turn
+GET [/v1/game/{game-id}/play/{player-id}?pit-id={pit-id}&in-html=true] 
+
+#### Inital board layout
+GET [/v1/game/initial-board?in-html=true]
 
 
