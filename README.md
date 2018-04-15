@@ -1,5 +1,5 @@
 # java-kalah
-Paying around with Java and a Kalah(6,6) game
+Paying around with Java and a Kalah(6,6) game.
 
 The general rules of the game are explained on Wikipedia: https://en.wikipedia.org/wiki/Kalah. 
 
@@ -9,9 +9,6 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 - 6 Stones by pit
 - 1 Kalah per player
 - 2 Players
-- Always move counter-clockwise
-- Start your turn only in your pits
-- Always take all your selected pit's stones and distribute each one in the pits including your Kalah
 
 ## Board
 
@@ -24,6 +21,13 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 Player 1 Kalah's is position 6, his pits are 0-5
 
 Player 2 Kalah's is position 13, his pits are 7-12
+
+## How to play
+
+- Always move counter-clockwise
+- Start your turn only in your pits
+- Always take all your selected pit's stones and distribute each one in the adyecent pits including your Kalah
+
 
 ## Rules
 
