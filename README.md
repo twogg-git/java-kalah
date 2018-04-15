@@ -16,8 +16,9 @@ Paying around with Java and a Kalah(6,6) game
 | 13 |    |    |    |    |    |   |  6 |
 |    | 0  |  1 |  2 |  3 |  4 | 5 |    |
 
-Kalah Player 1 is position 6, his pits are 0-5
-Kalah Player 2 is position 13, his pits are 7-12
+Player 1 Kalah's is position 6, his pits are 0-5
+
+Player 2 Kalah's is position 13, his pits are 7-12
 
 ## Rules
 
