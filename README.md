@@ -18,9 +18,9 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 | K2 |   |   |   |   |   |   | K1 |
 |    | A | B | C | D | E | F |    |
 
-Player 1 Kalah's is position 6, his pits are 0-5
+Player 1 Kalah's is position K1, his pits are A-F
 
-Player 2 Kalah's is position 13, his pits are 7-12
+Player 2 Kalah's is position K2, his pits are G-L
 
 ## How to play
 
