@@ -1,2 +1,34 @@
 # java-kalah
-Paying around with java and a 6-stone Kalah game
+Paying around with Java and a Kalah(6,6) game
+
+## Basics
+
+- 6 Pits per player
+- 6 Stones by pit
+- 1 Kalah per player
+- 2 Players
+
+## Board
+
+| P2 |    |    |    |    |    |   | P1 |
+|----|----|----|----|----|----|---|----|
+|    | 12 | 11 | 10 | 9  | 8  | 7 |    |
+| 13 |    |    |    |    |    |   |  6 |
+|    | 0  |  1 |  2 |  3 |  4 | 5 |    |
+
+Kalah Player 1 is position 6, his pits are 0-5
+Kalah Player 2 is position 13, his pits are 7-12
+
+## Rules
+
+- Always move counter-clockwise
+- Start your turn only in your pits
+- Always take all your selected pit's stones and distribute each on your pits including your Kalah
+- If your last stone ends in your Kalah you get another turn
+- If your last stone ends in an empty pit and your oposite pit had stones, you take his pit stones and yours to your Kalah 
+- If a player had all his pits empty the oposite player take the remaining stones to his Kalah and the game ends
+- At the game endings you count all your Kalah stones and the player with more stones wins
+
+
+
+
