@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/game")
+@RequestMapping(path = "/v1/game")
 public class GameController {
 
     @Autowired
