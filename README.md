@@ -11,12 +11,13 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 - 2 Players
 
 ## Board
-
-| P2 |   |   |   |   |   |   | P1 |
-|----|---|---|---|---|---|---|----|
-|    | L | K | J | I | H | G |    |
-| K2 |   |   |   |   |   |   | K1 |
-|    | A | B | C | D | E | F |    |
+      < ---- Player 2 turn direction       
+| Player2 |   |   |   |   |   |   | Player2 |
+|---------|---|---|---|---|---|---|---------|
+|         | L | K | J | I | H | G |         |
+|   K2    |   |   |   |   |   |   |   K1    |
+|         | A | B | C | D | E | F |         |
+       Player 1 turn direction ---- >
 
 Player 1 Kalah's is position K1, his pits are A-F
 
@@ -25,13 +26,13 @@ Player 2 Kalah's is position K2, his pits are G-L
 ## How to play
 
 - Always move counter-clockwise
-- Start your log only in your pits
+- Start your turn only in your pits
 - Always take all your selected pit's stones and distribute each one in the adyecent pits including your Kalah
 
 
 ## Rules
 
-- If your last stone ends in your Kalah you get another log
+- If your last stone ends in your Kalah you get another turn
 - If your last stone ends in an empty pit and your oposite pit had stones, you take his pit stones and yours to your Kalah 
 - If a player had all his pits empty the oposite player take the remaining stones to his Kalah and the game ends
 - At the game endings you count all your Kalah stones and the player with more stones wins
@@ -49,13 +50,7 @@ Owner [int] If this pit belongs to Player 1 value:1, else value:2
 
 ## Rest Services
 
-#### Board Status
-GET [/v1/game/{game-id}/board-status?in-html=true] 
-
-#### Players log
-GET [/v1/game/{game-id}/play/{player-id}?pit-id={pit-id}&in-html=true] 
-
-#### Inital board layout
-GET [/v1/game/initial-board?in-html=true]
-
+- GET /game-status : Board Status
+- POST /play/id-player?pit=# : Player play, setting the initial pit where his turn starts
+- GET /logs : Players game logs 
 
