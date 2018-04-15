@@ -25,13 +25,13 @@ Player 2 Kalah's is position K2, his pits are G-L
 ## How to play
 
 - Always move counter-clockwise
-- Start your turn only in your pits
+- Start your log only in your pits
 - Always take all your selected pit's stones and distribute each one in the adyecent pits including your Kalah
 
 
 ## Rules
 
-- If your last stone ends in your Kalah you get another turn
+- If your last stone ends in your Kalah you get another log
 - If your last stone ends in an empty pit and your oposite pit had stones, you take his pit stones and yours to your Kalah 
 - If a player had all his pits empty the oposite player take the remaining stones to his Kalah and the game ends
 - At the game endings you count all your Kalah stones and the player with more stones wins
@@ -52,7 +52,7 @@ Owner [int] If this pit belongs to Player 1 value:1, else value:2
 #### Board Status
 GET [/v1/game/{game-id}/board-status?in-html=true] 
 
-#### Players turn
+#### Players log
 GET [/v1/game/{game-id}/play/{player-id}?pit-id={pit-id}&in-html=true] 
 
 #### Inital board layout

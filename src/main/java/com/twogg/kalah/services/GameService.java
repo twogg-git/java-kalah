@@ -13,7 +13,7 @@ public class GameService {
         return new Board();
     }
 
-    public Board getBoardStatus(int gameId) {
+    public Board getBoardStatus(String gameId) {
         return loadBoard(gameId);
     }
 
@@ -23,40 +23,43 @@ public class GameService {
                 + "<br>" + getHtmlFormattedBoard(board.getPits())
                 + "<br><br>Next turn is for: Player" + board.getNextTurnPlayer()
                 + "<br>Messages: " + board.getMessage()
+                + "<a href='http://localhost:8080?game_id=20180415-06:32'>Start playing!</a>"
                 + "</html>";
     }
 
-    public String getBoardStatusHtml(int gameId) {
+    public String getBoardStatusHtml(String gameId) {
         Board board = loadBoard(gameId);
         return "<html>" + board.getCurrentTurn()
                 + "<br>" + getHtmlFormattedBoard(board.getPits())
                 + "<br><br>Next turn is for: Player" + board.getNextTurnPlayer()
                 + "<br>Messages: " + board.getMessage()
+                + "<a href='http://localhost:8080?game_id=20180415-06:32'>Start playing!</a>"
                 + "</html>";
     }
 
-    public String playTurnHtml(int gameId, int playerId, char pitChar) {
+    public String playTurnHtml(String gameId, int playerId, char pitChar) {
         Board board = playTurn(gameId, playerId, pitChar);
         return "<html>" + board.getCurrentTurn()
                 + "<br>" + getHtmlFormattedBoard(board.getPits())
                 + "<br><br>Next turn is for: Player" + board.getNextTurnPlayer()
                 + "<br>Messages: " + board.getMessage()
+                + "<a href='http://localhost:8080?game_id=20180415-06:32'>Start playing!</a>"
                 + "</html>";
     }
 
-    public Board playTurn(int gameId, int playerId, char pitChar) {
+    public Board playTurn(String gameId, int playerId, char pitChar) {
 
         Board board = loadBoard(gameId);
         if (playerId < 1 || playerId > 2 || board.getNextTurnPlayer() != playerId) {
             board.setCurrentTurn("Plays: [ERROR] Selected Pit: [ERROR]");
-            board.setMessage("Invalid Player ID! [" + playerId + "] Turn for Player" + board.getNextTurnPlayer());
+            board.setMessage("Invalid Player ID! [" + playerId + "] Log for Player" + board.getNextTurnPlayer());
             return board;
         }
 
         int pitIndex = Pit.getIndexByAlpha(pitChar);
         if (pitIndex == -1) {
             board.setCurrentTurn("Plays: [P" + playerId + "] Selected Pit: [ERROR]");
-            board.setMessage("Invalid pit index! [" + pitChar + "] Turn remains on Player" + playerId);
+            board.setMessage("Invalid pit index! [" + pitChar + "] Log remains on Player" + playerId);
             return board;
         }
 
@@ -146,7 +149,7 @@ public class GameService {
         return board;
     }
 
-    private Board loadBoard(int gameId) {
+    private Board loadBoard(String gameId) {
         return new Board();
     }
 

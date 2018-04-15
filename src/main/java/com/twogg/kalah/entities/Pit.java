@@ -108,7 +108,7 @@ public class Pit {
         if(isKalah){
             this.stones = 0;
         } else{
-            this.stones = 6;
+            this.stones = stones;
         }
     }
 

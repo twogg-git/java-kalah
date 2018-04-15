@@ -1,16 +1,22 @@
 package com.twogg.kalah.entities;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@PropertySource("classpath:application.properties")
+@ConfigurationProperties
 public class Board {
 
-    @Value("${stones_by_pit}")
+    @Value("${stones.by.pit}")
     private int stonesByPit = 6;
 
-    @Value("${starts_player}")
+    @Value("${starts.player}")
     private int startsPlayer = 1;
 
     public static final int PITS_COUNT = 14;
@@ -70,10 +76,12 @@ public class Board {
         this.lastPit = lastPit;
     }
 
-    public void getFixedBoard(int[] stones) {
-        for (int i = 0; i < PITS_COUNT; i++) {
-            Pit pit = new Pit(i, stones[i]);
-            pits.add(pit);
+    public int[] getBoardStatus() {
+        int[] boardStatus = new int[PITS_COUNT];
+        for (int i = 0; i< PITS_COUNT; i++){
+            boardStatus[i] = pits.get(i).getStones();
         }
+        return boardStatus;
     }
+
 }

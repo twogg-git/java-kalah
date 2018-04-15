@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"></script>
+    <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <title>Kalah Game</title>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Kalah Game</h1>
+    <h3 class="text-center" style="color: gray">Playing around with a Kalah(6,6) Board, Java, Spring Boot, and MongoDB</h3>
+
+    <div class="col-md-2">
+        <form name="loadBoard" action="/v1/game/initial-board?in_html=true" method="post" class="form-horizontal">
+            <div class="form-group">
+                <h2 class="text-center">Start a new game:</h2>
+                <button type="submit" class="btn btn-default">New Game</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-7">
+        <form name="saveLog" action="/v1/game/play" method="post" class="form-horizontal">
+            <div class="form-group">
+
+                <h2 class="text-center">Play a turn:</h2>
+
+                <label for="game_id">Game ID:</label>
+                <input type="text" id="game_id" class="form-control" placeholder="Game ID..." name="game_id"/>
+
+                <label for="player_id">Player ID:</label>
+                <input type="number" id="player_id" class="form-control" placeholder="Player1 ID is 1..." name="player_id"/>
+
+                <label for="pit_id">Selected Pit:</label>
+                <input type="text" id="pit_id" class="form-control" placeholder="Enter alpha index..." name="pit_id">
+
+                <input type="checkbox" id="in_html" name="in_html" class="form-control" value="Yes" style="display:none;" checked>
+
+
+                <button type="submit" class="btn btn-default">Play</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-12">
+        <h2>Game Logs</h2>
+        <table id="logsTable" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Game ID</th>
+                <th>Current Player</th>
+                <th>Next Turn Goes</th>
+                <th>Messages</th>
+                <th>Board Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $.ajax({
+        url: "/v1/game/logs",
+        success: function (response) {
+            $.each(response, function (i, item) {
+                var row = $("<tr />");
+                $("#logsTable").append(row);
+                row.append($("<td>" + item.gameId + "</td>"));
+                row.append($("<td>" + item.nextTurnGoes + "</td>"));
+                row.append($("<td>" + item.turnMessages + "</td>"));
+                row.append($("<td>" + item.boardStatus + "</td>"));
+            });
+        }
+    })
+</script>
+</body>
+</html>
