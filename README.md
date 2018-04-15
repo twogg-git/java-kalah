@@ -39,9 +39,12 @@ Player 2 Kalah's is position 13, his pits are 7-12
 ## Classes 
 
 ### Pit
-Stones [int] Count of current stones in this pit
+Stones [int] Count of current stones in this pit 
+
 Oposite [int] Index of its oposite pit
+
 IsKalah [boolean] Validates if this pit is a Kalah box
+
 Owner [int] If this pit belongs to Player 1 value:1, else value:2
 
 ## Rest Services
