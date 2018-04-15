@@ -36,6 +36,10 @@ Player 2 Kalah's is position 13, his pits are 7-12
 - If a player had all his pits empty the oposite player take the remaining stones to his Kalah and the game ends
 - At the game endings you count all your Kalah stones and the player with more stones wins
 
+## Rest Services
 
+- GET /game-status : Board Status
+- POST /play/id-player?pit=# : Player play, setting the initial pit where his turn starts
+- GET /logs : Players game logs 
 
 
