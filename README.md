@@ -12,15 +12,15 @@ The general rules of the game are explained on Wikipedia: https://en.wikipedia.o
 
 ## Board
 
-| P2 |    |    |    |    |    |   | P1 |
-|----|----|----|----|----|----|---|----|
-|    | 12 | 11 | 10 | 9  | 8  | 7 |    |
-| 13 |    |    |    |    |    |   |  6 |
-|    | 0  |  1 |  2 |  3 |  4 | 5 |    |
+| P2 |   |   |   |   |   |   | P1 |
+|----|---|---|---|---|---|---|----|
+|    | L | K | J | I | H | G |    |
+| K2 |   |   |   |   |   |   | K1 |
+|    | A | B | C | D | E | F |    |
 
-Player 1 Kalah's is position 6, his pits are 0-5
+Player 1 Kalah's is position K1, his pits are A-F
 
-Player 2 Kalah's is position 13, his pits are 7-12
+Player 2 Kalah's is position K2, his pits are G-L
 
 ## How to play
 
@@ -39,9 +39,12 @@ Player 2 Kalah's is position 13, his pits are 7-12
 ## Classes 
 
 ### Pit
-Stones [int] Count of current stones in this pit
+Stones [int] Count of current stones in this pit 
+
 Oposite [int] Index of its oposite pit
+
 IsKalah [boolean] Validates if this pit is a Kalah box
+
 Owner [int] If this pit belongs to Player 1 value:1, else value:2
 
 ## Rest Services
