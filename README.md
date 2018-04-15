@@ -1,5 +1,6 @@
 # java-kalah
 Paying around with Java and a Kalah(6,6) game
+
 The general rules of the game are explained on Wikipedia: https://en.wikipedia.org/wiki/Kalah. 
 
 ## Basics
