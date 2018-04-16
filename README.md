@@ -48,7 +48,7 @@ Player 2 Kalah's is position K2, his pits are G-L
 
 ## Run the game
 
-In your terminal go to projects folder, then execute docker-compose up --build command 
+Clone the repository locally, then in your terminal go to this projects folder, and execute the following command. 
 ```ssh
 $ docker-compose up --build
 ```
@@ -59,6 +59,6 @@ http://localhost:8080/
 ```
 ![logs](imgs/logs.png)
 
-![new game](imgs/new_game.png)
+![new board](imgs/new_board.png)
 
 ![load game](imgs/load_game.png)
