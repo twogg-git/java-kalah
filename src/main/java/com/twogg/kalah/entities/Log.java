@@ -19,17 +19,19 @@ public class Log implements Serializable {
     private int nextTurnGoes;
     private String turnMessages;
     private int[] boardStatus;
+    private Long createDate;
 
     public Log(){
 
     }
 
     public Log(int[] boardStatus, int nextTurnGoes, String turnMessages){
-        this.gameId = new SimpleDateFormat("yyyyMMdd-hh:mm").format(new Date( ));
+        this.gameId = new SimpleDateFormat("yyyyMMdd-hh:mm:ss").format(new Date( ));
         this.currentPlayer = 0;
         this.nextTurnGoes =  nextTurnGoes;
         this.boardStatus = boardStatus;
         this.turnMessages = turnMessages;
+        this.createDate = new Date().getTime();
     }
 
     public Log(String gameId, int currentPlayer, int nextTurnGoes, int[] boardStatus, String turnMessages) {
@@ -38,6 +40,7 @@ public class Log implements Serializable {
         this.nextTurnGoes =  nextTurnGoes;
         this.boardStatus = boardStatus;
         this.turnMessages = turnMessages;
+        this.createDate = new Date().getTime();
     }
 
     public String getId() {
@@ -88,6 +91,14 @@ public class Log implements Serializable {
         this.boardStatus = boardStatus;
     }
 
+    public Long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Long createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -98,11 +109,12 @@ public class Log implements Serializable {
                 Objects.equals(currentPlayer, log.currentPlayer) &&
                 Objects.equals(nextTurnGoes, log.nextTurnGoes) &&
                 Objects.equals(boardStatus, log.boardStatus) &&
-                Objects.equals(turnMessages, log.turnMessages);
+                Objects.equals(turnMessages, log.turnMessages)&&
+                Objects.equals(createDate, log.createDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, gameId, currentPlayer, nextTurnGoes, boardStatus, turnMessages);
+        return Objects.hash(id, gameId, currentPlayer, nextTurnGoes, boardStatus, turnMessages, createDate);
     }
 }

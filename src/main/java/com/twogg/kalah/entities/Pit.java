@@ -14,6 +14,26 @@ public class Pit {
         setStones(stones);
     }
 
+    private void setStones(int stones) {
+        this.stones = stones;
+    }
+
+    private void setIsKalah(int index) {
+        if (index == 6 || index == 13) {
+            this.isKalah = true;
+        } else {
+            this.isKalah = false;
+        }
+    }
+
+    private void setOwner(int index) {
+        if (index <= 6) {
+            this.owner = 1;
+        } else {
+            this.owner = 2;
+        }
+    }
+
     public int getStones() {
         return stones;
     }
@@ -31,11 +51,11 @@ public class Pit {
     }
 
     public void addOneStone() {
-        this.stones++;
+        this.stones = this.stones + 1;
     }
 
     public void addCaptureStones(int stones){
-        this.stones += stones;
+        this.stones = this.stones + stones;
     }
 
     public void emptyPit(){
@@ -56,6 +76,8 @@ public class Pit {
                 return 4;
             case 'F':
                 return 5;
+            case '1':
+                return 6;
             case 'G':
                 return 7;
             case 'H':
@@ -68,6 +90,8 @@ public class Pit {
                 return 11;
             case 'L':
                 return 12;
+            case '2':
+                return 13;
             default:
                 return -1;
         }
@@ -87,6 +111,8 @@ public class Pit {
                 return 'E';
             case 5:
                 return 'F';
+            case 6:
+                return '1';
             case 7:
                 return 'G';
             case 8:
@@ -99,16 +125,10 @@ public class Pit {
                 return 'K';
             case 12:
                 return 'L';
+            case 13:
+                return '2';
             default:
                 return 'X';
-        }
-    }
-
-    private void setStones(int stones) {
-        if(isKalah){
-            this.stones = 0;
-        } else{
-            this.stones = stones;
         }
     }
 
@@ -156,22 +176,6 @@ public class Pit {
             case 13:
                 this.opposite = 6;
                 break;
-        }
-    }
-
-    private void setIsKalah(int index) {
-        if (index == 6 || index == 13) {
-            this.isKalah = true;
-        } else {
-            this.isKalah = false;
-        }
-    }
-
-    private void setOwner(int index) {
-        if (index <= 6) {
-            this.owner = 1;
-        } else {
-            this.owner = 2;
         }
     }
 }

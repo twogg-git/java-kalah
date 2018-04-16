@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"></script>
     <script src="/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <title>Kalah Game</title>
@@ -16,50 +14,73 @@
 
 <div class="container">
     <h1 class="text-center">Kalah Game</h1>
-    <h3 class="text-center" style="color: gray">Playing around with a Kalah(6,6) Board, Java, Spring Boot, and MongoDB</h3>
 
     <div class="col-md-2">
-        <form name="loadBoard" action="/v1/game/initial-board?in_html=true" method="post" class="form-horizontal">
-            <div class="form-group">
-                <h2 class="text-center">Start a new game:</h2>
-                <button type="submit" class="btn btn-default">New Game</button>
-            </div>
+        <form id="newBoard" action="/v1/game/new-board" target="_self" method="post" class="form-horizontal">
+                <label> This is a web version of a Kalah(6,6) board game</label>
+                <button style="font-size: 13px" type="submit" class="btn btn-primary"><b>Start a new game</b></button>
+
         </form>
     </div>
+
+    <div>
+        <div id="newBoardContainer"/>
+    </div>
+
+    <br>
 
     <div class="col-md-7">
-        <form name="saveLog" action="/v1/game/play" method="post" class="form-horizontal">
+        <form  class="form-horizontal">
             <div class="form-group">
 
-                <h2 class="text-center">Play a turn:</h2>
+                <label for="load_game_id"><b>Game ID:</b></label>
+                <input type="text" id="load_game_id" class="form-control" placeholder="Game ID..." name="load_game_id"/>
 
-                <label for="game_id">Game ID:</label>
-                <input type="text" id="game_id" class="form-control" placeholder="Game ID..." name="game_id"/>
+                <button id="loadBoard" style="font-size: 13px" type="submit" class="btn btn-primary"><b>Load Board</b></button>
 
-                <label for="player_id">Player ID:</label>
-                <input type="number" id="player_id" class="form-control" placeholder="Player1 ID is 1..." name="player_id"/>
-
-                <label for="pit_id">Selected Pit:</label>
-                <input type="text" id="pit_id" class="form-control" placeholder="Enter alpha index..." name="pit_id">
-
-                <input type="checkbox" id="in_html" name="in_html" class="form-control" value="Yes" style="display:none;" checked>
-
-
-                <button type="submit" class="btn btn-default">Play</button>
             </div>
         </form>
     </div>
 
+    <div>
+        <div id="loadBoardContainer"/>
+    </div>
+
+    <br>
+
+    <div class="col-md-7">
+        <form  class="form-horizontal">
+            <div class="form-group">
+
+                <label for="game_id"><b>Game ID:</b></label>
+                <input type="text" id="game_id" class="form-control" placeholder="Enter a Game ID..." name="game_id"/>
+
+                <label for="player_id"><b>Playing:</b></label>
+                <input type="number" id="player_id" class="form-control" placeholder="Enter Player ID..." name="player_id"/>
+
+                <label for="pit_id">  <b>Selected Pit:</b></label>
+                <input type="text" id="pit_id" style="text-transform: uppercase" class="form-control" placeholder="Pit index..." name="pit_id">
+
+                <button id="playTurn" style="font-size: 13px" type="submit" class="btn btn-primary"><b>Play Turn</b></button>
+
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <div id="currentBoardContainer"/>
+    </div>
+
+    <br>
+
     <div class="col-md-12">
-        <h2>Game Logs</h2>
         <table id="logsTable" class="table table-striped">
             <thead>
             <tr>
                 <th>Game ID</th>
-                <th>Current Player</th>
-                <th>Next Turn Goes</th>
-                <th>Messages</th>
-                <th>Board Status</th>
+                <th>Player Turn</th>
+                <th>Turn Messages</th>
+                <th>Next Goes</th>
             </tr>
             </thead>
             <tbody>
@@ -70,17 +91,113 @@
 <script>
     $.ajax({
         url: "/v1/game/logs",
+        method: "GET",
         success: function (response) {
             $.each(response, function (i, item) {
                 var row = $("<tr />");
                 $("#logsTable").append(row);
                 row.append($("<td>" + item.gameId + "</td>"));
-                row.append($("<td>" + item.nextTurnGoes + "</td>"));
+                row.append($("<td style=\"text-align: center\">" + item.currentPlayer + "</td>"));
                 row.append($("<td>" + item.turnMessages + "</td>"));
-                row.append($("<td>" + item.boardStatus + "</td>"));
+                row.append($("<td style=\"text-align: center\">" + item.nextTurnGoes + "</td>"));
             });
         }
     })
+
+    function getNewBoard() {
+        $.ajax({
+            url: "http://localhost:8080/v1/game/new-board",
+            method: "POST"
+        }).done(function( data ) {
+            $("#newBoardContainer").html(data);
+            $.ajax({
+                url: "/v1/game/logs",
+                success: function (response) {
+                    var tbody = $("#logsTable tbody")
+                    tbody.html("");
+                    $.each(response, function (i, item) {
+                        var row = $("<tr />");
+                        tbody.append(row);
+                        row.append($("<td>" + item.gameId + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.currentPlayer + "</td>"));
+                        row.append($("<td>" + item.turnMessages + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.nextTurnGoes + "</td>"));
+                    });
+                }
+            })
+        })
+    }
+
+
+    $("#newBoard").on("click", function (e) {
+        e.preventDefault()
+        getNewBoard()
+    })
+
+
+    function getCurrentBoard() {
+        $.ajax({
+            url: "http://localhost:8080/v1/game/play"
+            + "?game_id="+game_id.value
+            + "&player_id="+player_id.value
+            + "&pit_id="+pit_id.value,
+            method: "POST"
+        }).done(function( data ) {
+            $("#currentBoardContainer").html(data);
+            $.ajax({
+                url: "/v1/game/logs",
+                success: function (response) {
+                    var tbody = $("#logsTable tbody")
+                    tbody.html("");
+                    $.each(response, function (i, item) {
+                        var row = $("<tr />");
+                        tbody.append(row);
+                        row.append($("<td>" + item.gameId + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.currentPlayer + "</td>"));
+                        row.append($("<td>" + item.turnMessages + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.nextTurnGoes + "</td>"));
+                    });
+                }
+            })
+        })
+    }
+
+    $("#playTurn").on("click", function (e) {
+        e.preventDefault()
+        getCurrentBoard()
+    })
+
+
+    function getLoadBoard() {
+        $.ajax({
+            url: "http://localhost:8080/v1/game/load-board"
+            + "?load_game_id="+load_game_id.value,
+            method: "GET"
+        }).done(function( data ) {
+            $("#loadBoardContainer").html(data);
+            $.ajax({
+                url: "/v1/game/logs",
+                success: function (response) {
+                    var tbody = $("#logsTable tbody")
+                    tbody.html("");
+                    $.each(response, function (i, item) {
+                        var row = $("<tr />");
+                        tbody.append(row);
+                        row.append($("<td>" + item.gameId + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.currentPlayer + "</td>"));
+                        row.append($("<td>" + item.turnMessages + "</td>"));
+                        row.append($("<td style=\"text-align: center\">" + item.nextTurnGoes + "</td>"));
+                    });
+                }
+            })
+        })
+    }
+
+    $("#loadBoard").on("click", function (e) {
+        e.preventDefault()
+        getLoadBoard()
+    })
+
 </script>
 </body>
 </html>

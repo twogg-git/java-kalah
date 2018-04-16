@@ -25,19 +25,28 @@ public class Board {
 
     private List<Pit> pits;
     private String message;
-    private String currentTurn;
     private int nextTurnPlayer;
     private int lastPit;
+    private boolean gameFinished;
 
     public Board(){
-        pits = new ArrayList<>(PITS_COUNT);
+        this.pits = new ArrayList<>(PITS_COUNT);
         for (int i = 0; i < PITS_COUNT; i++) {
-            Pit pit = new Pit(i, stonesByPit);
-            pits.add(pit);
+            Pit pit = new Pit(i, ( (i == 6 || i == 13) ?  0 : stonesByPit));
+            this.pits.add(pit);
         }
-        nextTurnPlayer = startsPlayer;
-        currentTurn = "Game starts, first turn goes to: Player"+ nextTurnPlayer;
-        message = "Board ready!...";
+        this.nextTurnPlayer = startsPlayer;
+        this.message = "Board ready!, first turn is for Player"+startsPlayer+"...";
+    }
+
+    public Board(int[] stones, int nextTurnPlayer){
+        this.pits = new ArrayList<>(PITS_COUNT);
+        for (int i = 0; i < PITS_COUNT; i++) {
+            Pit pit = new Pit(i, stones[i]);
+            this.pits.add(pit);
+        }
+        this.nextTurnPlayer = nextTurnPlayer;
+        this.message = "Board loaded!...";
     }
 
     public List<Pit> getPits(){
@@ -60,14 +69,6 @@ public class Board {
         this.nextTurnPlayer = nextTurnPlayer;
     }
 
-    public String getCurrentTurn() {
-        return currentTurn;
-    }
-
-    public void setCurrentTurn(String currentTurn) {
-        this.currentTurn = currentTurn;
-    }
-
     public int getLastPit() {
         return lastPit;
     }
@@ -84,4 +85,11 @@ public class Board {
         return boardStatus;
     }
 
+    public boolean getGameFinished() {
+        return gameFinished;
+    }
+
+    public void setGameFinished(boolean gameFinished) {
+        this.gameFinished = gameFinished;
+    }
 }

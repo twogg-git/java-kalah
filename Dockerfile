@@ -10,4 +10,4 @@ COPY target/kalah-0.1.jar $PROJECT_HOME/kalah-0.1.jar
 
 WORKDIR $PROJECT_HOME
 
-CMD ["java", "-Dspring.data.mongodb.uri=mongodb://springboot-mongo:27017/kalah-0.1","-Djava.security.egd=file:/dev/./urandom","-jar","./kalah-0.1.jar"]
+CMD ["java", "-Dspring.data.mongodb.uri=mongodb://springboot-mongo:27017/kalah","-Djava.security.egd=file:/dev/./urandom","-jar","./kalah-0.1.jar"]
