@@ -59,6 +59,6 @@ http://localhost:8080/
 ```
 ![logs](imgs/logs.png)
 
-![new game](imgs/new_game.png)
+![new board](imgs/new_board.png)
 
 ![load game](imgs/load_game.png)
