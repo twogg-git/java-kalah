@@ -45,3 +45,20 @@ Player 2 Kalah's is position K2, his pits are G-L
 - POST /play?game_id=?&player_id=?&pit_id=? -> Plays a turn, also draws the new board status.  
 - GET  /load-board?load_game_id=? -> Draws an hmlt board status by game id.
 - GET  /logs -> Load pevious games logs and shows current plays.
+
+## Run the game
+
+In your terminal go to projects folder, then execute docker-compose up --build command 
+```ssh
+$ docker-compose up --build
+```
+
+Then in your browser open
+```ssh
+http://localhost:8080/
+```
+![logs](imgs/logs.png)
+
+![new game](imgs/new_game.png)
+
+![load game](imgs/load_game.png)
