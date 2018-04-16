@@ -4,11 +4,6 @@ import com.twogg.kalah.entities.Board;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-
-import static org.junit.Assert.*;
 
 public class BoardServiceTest {
 

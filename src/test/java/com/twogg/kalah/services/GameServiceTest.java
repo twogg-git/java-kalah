@@ -4,12 +4,6 @@ import com.twogg.kalah.entities.Board;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.anySetOf;
 
 public class GameServiceTest {
 

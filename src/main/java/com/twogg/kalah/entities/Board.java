@@ -1,22 +1,14 @@
 package com.twogg.kalah.entities;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@PropertySource("classpath:application.properties")
-@ConfigurationProperties
 public class Board {
 
-    @Value("${stones.by.pit}")
     private int stonesByPit = 6;
-
-    @Value("${starts.player}")
     private int startsPlayer = 1;
 
     public static final int PITS_COUNT = 14;
