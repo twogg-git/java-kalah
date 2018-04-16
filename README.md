@@ -1,4 +1,4 @@
-# java-kalah
+# Kalah Board Game
 [![Build Status](https://travis-ci.org/twogg-git/ci-teamcity.svg?branch=master)](https://travis-ci.org/twogg-git/ci-teamcity)
 
 Paying around with Java and a Kalah(6,6) game.
@@ -39,20 +39,9 @@ Player 2 Kalah's is position K2, his pits are G-L
 - If a player had all his pits empty the oposite player take the remaining stones to his Kalah and the game ends
 - At the game endings you count all your Kalah stones and the player with more stones wins
 
-## Classes 
-
-### Pit
-Stones [int] Count of current stones in this pit 
-
-Oposite [int] Index of its oposite pit
-
-IsKalah [boolean] Validates if this pit is a Kalah box
-
-Owner [int] If this pit belongs to Player 1 value:1, else value:2
-
 ## Rest Services
 
-- GET /game-status : Board Status
-- POST /play/id-player?pit=# : Player play, setting the initial pit where his turn starts
-- GET /logs : Players game logs 
-
+- POST /new-board -> Init a new board and creates its logs info.
+- POST /play?game_id=?&player_id=?&pit_id=? -> Plays a turn, also draws the new board status.  
+- GET  /load-board?load_game_id=? -> Draws an hmlt board status by game id.
+- GET  /logs -> Load pevious games logs and shows current plays.
